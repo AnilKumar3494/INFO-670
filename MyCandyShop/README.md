@@ -20,8 +20,14 @@ Enjoy shopping at My Candy Shop! If you have any questions or feedback, feel fre
 
 ### How the App Looks Like
 
-Inital Visual: ![alt text](<WhatsApp Image 2024-04-25 at 03.46.43_95cfe6f3.jpg>)
+Inital Visual:
 
-Cart: ![alt text](<WhatsApp Image 2024-04-25 at 03.46.42_8eb70252.jpg>)
+![alt text](<WhatsApp Image 2024-04-25 at 03.46.43_95cfe6f3.jpg>)
 
-Cart Expandable: ![alt text](<WhatsApp Image 2024-04-25 at 03.46.42_d0f3c4c7.jpg>)
+Cart:
+
+![alt text](<WhatsApp Image 2024-04-25 at 03.46.42_8eb70252.jpg>)
+
+Cart Expandable:
+
+![alt text](<WhatsApp Image 2024-04-25 at 03.46.42_d0f3c4c7.jpg>)
