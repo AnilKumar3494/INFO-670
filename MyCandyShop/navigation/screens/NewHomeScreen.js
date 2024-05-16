@@ -1,29 +1,17 @@
-// import { StyleSheet, Text, View } from 'react-native'
-// import React from 'react'
-
-// const NewHomeScreen = ({ navigation }) => {
-//     return (
-//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//             <Text
-//                 onPress={() => navigation.navigate('Home')}
-//                 style={{ fontSize: 26, fontWeight: 'bold' }}
-//             >New Home  Screen</Text>
-//         </View>
-//     )
-// }
-
-// export default NewHomeScreen
-
-// const styles = StyleSheet.create({})
-
-import React from "react";
-import { StyleSheet, Text, View, Image, Pressable, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, Pressable, ScrollView, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from "../../CartReducer";
 
-const NewHomeScreen = ({ navigation }) => {
+
+import { addToCart, removeFromCart } from "../../CartReducer";
+import { Modal } from "react-native";
+
+
+const NewHomeScreen = () => {
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
+
+    const [fullImageUrl, setFullImageUrl] = useState(null);
 
     const candies = [
         {
@@ -31,60 +19,70 @@ const NewHomeScreen = ({ navigation }) => {
             imageUrl:
                 "https://images.unsplash.com/photo-1638194645412-1d0b4c53ffed?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             name: "Chocolate Bar",
+            price: 4.99
         },
         {
             id: 2,
             imageUrl:
                 "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8R3VtbXklMjBCZWFyc3xlbnwwfHwwfHx8MA%3D%3D",
             name: "Gummy Bears",
+            price: 3.99
         },
         {
             id: 3,
             imageUrl:
                 "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TG9sbGlwb3B8ZW58MHx8MHx8fDA%3D",
             name: "Lollipop",
+            price: 2.99
         },
         {
             id: 4,
             imageUrl:
                 "https://plus.unsplash.com/premium_photo-1677706394411-d3f06c3c2458?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q2FyYW1lbCUyMENoZXd8ZW58MHx8MHx8fDA%3D",
             name: "Caramel Chew",
+            price: 4.99
         },
         {
             id: 5,
             imageUrl:
                 "https://images.unsplash.com/photo-1581798269145-7512508289b9?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SmVsbHklMjBCZWFuc3xlbnwwfHwwfHx8MA%3D%3D",
             name: "Jelly Beans",
+            price: 2.99
         },
         {
             id: 6,
             imageUrl:
                 "https://plus.unsplash.com/premium_photo-1669790759947-a699d123bd0c?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UGVwcGVybWludCUyMFN0aWNrfGVufDB8fDB8fHww",
             name: "Peppermint Stick",
+            price: 1.5
         },
         {
             id: 7,
             imageUrl:
                 "https://res.cloudinary.com/nassau-candy/image/upload/c_fit,w_300,h_300,f_auto/1946.jpg",
             name: "Toffee Crunch",
+            price: 6.99
         },
         {
             id: 8,
             imageUrl:
                 "https://images.unsplash.com/photo-1629984627353-a8580d9a1a92?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Um9jayUyMENhbmR5fGVufDB8fDB8fHww",
             name: "Rock Candy",
+            price: 1.99
         },
         {
             id: 9,
             imageUrl:
                 "https://images.unsplash.com/photo-1611586360741-930bc2c731bc?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TWFyc2htYWxsb3clMjBUd2lzdHxlbnwwfHwwfHx8MA%3D%3D",
             name: "Marshmallow Twist",
+            price: 3.99
         },
         {
             id: 10,
             imageUrl:
                 "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/5025_SourPatchKids_p-zuo5bhlq-zoom.jpg",
             name: "Sour Patch Kids",
+            price: 1.99
         },
     ];
 
@@ -99,38 +97,36 @@ const NewHomeScreen = ({ navigation }) => {
 
     const renderCandyItems = () => {
         return candies.map((item) => (
-            <Pressable key={item.id} style={styles.itemContainer} onPress={() => handleCartAction(item)}>
-                <Image style={styles.image} source={{ uri: item.imageUrl }} resizeMode="cover" />
+            <View key={item.id} style={styles.itemContainer}>
+                <Pressable onPress={() => setFullImageUrl(item.imageUrl)}>
+                    <Image style={styles.image} source={{ uri: item.imageUrl }} resizeMode="cover" />
+                </Pressable>
                 <View style={styles.itemDetails}>
                     <Text style={styles.itemName}>{item.name}</Text>
-                    <Text style={styles.addToCartButton}>{cart.some((value) => value.id === item.id) ? "REMOVE FROM CART" : "ADD TO CART"}</Text>
+                    <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+                    <Pressable style={styles.addToCartButton} onPress={() => handleCartAction(item)}>
+                        <Text style={styles.addToCartButtonText}>{cart.some((value) => value.id === item.id) ? "REMOVE FROM CART" : "ADD TO CART"}</Text>
+                    </Pressable>
                 </View>
-            </Pressable>
+            </View>
         ));
     };
-
-    // const renderCartItems = () => {
-    //     return cart.map((item) => (
-    //         <View key={item.id} style={styles.cartItem}>
-    //             <Image style={styles.cartItemImage} source={{ uri: item.imageUrl }} resizeMode="cover" />
-    //             <Text style={styles.cartItemName}>{item.name}</Text>
-    //             <View style={styles.quantityControl}>
-    //                 <Pressable onPress={() => dispatch(decrementQuantity(item))}><Text style={styles.quantityText}>-</Text></Pressable>
-    //                 <Text style={styles.quantityText}>{item.quantity}</Text>
-    //                 <Pressable onPress={() => dispatch(incrementQuantity(item))}><Text style={styles.quantityText}>+</Text></Pressable>
-    //             </View>
-    //         </View>
-    //     ));
-    // };
-
 
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.header}>My Candy Store</Text>
             <Text style={styles.subHeader}>Choose Your Favorite Candy!</Text>
             {renderCandyItems()}
-            {/* <Text style={styles.cartHeading}>Cart Items</Text>
-            {renderCartItems()} */}
+
+            <Modal visible={!!fullImageUrl} transparent={true} onRequestClose={() => setFullImageUrl(null)}>
+                <View style={styles.modalContainer}>
+                    <Image style={styles.fullscreenImage} source={{ uri: fullImageUrl }} resizeMode="contain" />
+                    <TouchableOpacity style={styles.closeButton} onPress={() => setFullImageUrl(null)}>
+                        <Text style={styles.closeButtonText}>Close</Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+
         </ScrollView>
     );
 };
@@ -182,54 +178,45 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
         color: "#333",
+        marginBottom: 4,
+    },
+    itemPrice: {
+        fontSize: 16,
+        color: "#666",
         marginBottom: 8,
     },
     addToCartButton: {
         paddingVertical: 8,
-        paddingHorizontal: 12,
-        backgroundColor: "#007BFF",
-        color: "#FFF",
-        borderRadius: 8,
-        textAlign: "center",
-    },
-    cartHeading: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginBottom: 16,
-        color: "#333",
-    },
-    cartItem: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "#FFF",
-        borderRadius: 12,
-        marginBottom: 12,
-        padding: 12,
-        elevation: 2,
-        shadowColor: "#000",
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-    },
-    cartItemImage: {
-        width: 80,
-        height: 80,
-        borderRadius: 8,
-        marginRight: 12,
-    },
-    cartItemName: {
-        fontSize: 16,
-        fontWeight: "bold",
-        color: "#333",
-        flex: 1,
-    },
-    quantityControl: {
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    quantityText: {
-        fontSize: 24,
-        fontWeight: "bold",
         paddingHorizontal: 16,
+        backgroundColor: "#007BFF",
+        borderRadius: 8,
+        alignItems: "center",
+    },
+    addToCartButtonText: {
+        color: "#FFF",
+        fontWeight: "bold",
+        fontSize: 14,
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    fullscreenImage: {
+        width: "90%",
+        height: "90%",
+    },
+    closeButton: {
+        position: "absolute",
+        top: 20,
+        right: 20,
+        backgroundColor: "#FFF",
+        padding: 10,
+        borderRadius: 5,
+    },
+    closeButtonText: {
+        fontSize: 16,
         color: "#333",
     },
 });

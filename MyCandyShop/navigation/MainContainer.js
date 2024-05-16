@@ -10,7 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import NewHomeScreen from './screens/NewHomeScreen'
 import Profile from './screens/Profile'
 import Cart from './screens/Cart'
-import HomeScreen from '../screens/HomeScreen'
+
 
 //Screen Names
 const homeName = 'Home'
