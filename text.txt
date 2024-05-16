@@ -1,0 +1,22 @@
+For UCS:
+Initial – Open{A(0)}
+Expand A – Open{Z(75), T(118), S(140)}
+Choosing Node with low cost - Z(75) - Open{T(118), S(140), O(75+71)}
+Expanding T(118) - Open{S(140), O(146), L(111+118)}
+Expand S(140) - Open{O(146), L(229), R(80+140), F(99+140)}
+Expand O(146) - Open{L(229), R(220), F(239), S(is already visited)}
+Expand L(229) - Open{F(239), P(317), C(366), }
+Expand F(239) - Open{P(317), C(366), B(239+211)}
+
+For A*:
+Initial State - Open{A(0, 366, 366)}
+
+Expand A(0) and Open all it's neighbors - Open{Z(75, 374, 449), S(140, 253, 393) ,T(118, 329, 447)}
+
+Expand S(140) as it has lowest total - Open{Z(75, 374, 449), T(118, 329, 447), O(140+151, 380, 671), F(140+99, 178, 417), R(140+80, 193, 413)}
+
+Expand R(220) - Open{Z(75, 374, 449), T(118, 329, 447), O(140+151, 380, 671), F(140+99, 178, 417), C(220+138, 160, 518), P(220+97, 98, 415)}
+
+Expand P(317) - Open{Z(75, 374, 449), T(118, 329, 447), O(140+151, 380, 671), F(140+99, 178, 417), C(220+138, 160, 518), B(317+101, 0, 418)}
+
+The path followed is A-S-R-P-B and total cost is 317 + 101 = 418.
