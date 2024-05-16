@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image, Pressable, ScrollView } from "react-nati
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from "../CartReducer";
 
+// import NavBar from "./NavBar";
+
 const HomeScreen = () => {
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
@@ -105,6 +107,7 @@ const HomeScreen = () => {
         ));
     };
 
+
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.header}>My Candy Store</Text>
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#F0F0F0",
         paddingVertical: 20,
         paddingHorizontal: 16,
+        paddingBottom: 20,
     },
     header: {
         fontSize: 32,
@@ -177,7 +181,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 16,
         color: "#333",
-
     },
     cartItem: {
         flexDirection: "row",
