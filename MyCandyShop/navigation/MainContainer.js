@@ -32,18 +32,22 @@ const MainContainer = () => {
                         if (rn === homeName) {
                             iconName = focused ? 'home' : 'home-outline'
                         } else if (rn === cartName) {
-                            iconName = focused ? 'list' : 'list-outline'
-                        }
-                        else if (rn === profileName) {
-                            iconName = focused ? 'settings' : 'settings-outline'
+                            iconName = focused ? 'cart' : 'cart-outline'
+                        } else if (rn === profileName) {
+                            iconName = focused ? 'person' : 'person-outline'
                         }
 
-                        return <Ionicons name={iconName} size={size} color={color} />
-                    }
+                        return <Ionicons name={iconName} size={size} color={color} />;
+                    },
+                    tabBarActiveTintColor: 'tomato',
+                    tabBarInactiveTintColor: 'grey',
+                    tabBarLabelStyle: { paddingBottom: 5, fontSize: 10 }
                 })}
             >
 
                 <Tab.Screen name={homeName} component={NewHomeScreen} />
+                <Tab.Screen name={profileName} component={Profile} />
+                <Tab.Screen name={cartName} component={Cart} />
 
             </Tab.Navigator>
         </NavigationContainer>
