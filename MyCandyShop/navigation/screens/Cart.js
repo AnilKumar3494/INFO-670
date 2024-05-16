@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, Pressable, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, ScrollView, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../../CartReducer";
+import { useNavigation } from '@react-navigation/native';
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
     const [totalPrice, setTotalPrice] = useState(0);
+    const navigation = useNavigation();
+
+    const goToNewHomeScreen = () => {
+        navigation.navigate("Home");
+    };
 
     useEffect(() => {
         calculateTotalPrice();
@@ -43,12 +49,25 @@ const Cart = () => {
         });
     };
 
+
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.header}>My Candy Store</Text>
             <Text style={styles.cartHeading}>Cart Items</Text>
-            {renderCartItems()}
-            <Text style={styles.totalPrice}>Total: ${totalPrice}</Text>
+            {cart.length === 0 || totalPrice === "0.00" ? (
+                <View style={styles.emptyCartContainer}>
+                    <Text style={styles.emptyCartText}>Your cart is empty!</Text>
+                    <Text style={styles.emptyCartSubText}>Buy some candy and fill up your cart!</Text>
+                    <TouchableOpacity style={styles.shopNowButton} onPress={goToNewHomeScreen}>
+                        <Text style={styles.shopNowButtonText}>Shop Now</Text>
+                    </TouchableOpacity>
+                </View>
+            ) : (
+                <>
+                    {renderCartItems()}
+                    <Text style={styles.totalPrice}>Total: ${totalPrice}</Text>
+                </>
+            )}
         </ScrollView>
     );
 }
@@ -123,5 +142,33 @@ const styles = StyleSheet.create({
         textAlign: "right",
         marginTop: 20,
         color: "#333",
+    },
+    emptyCartContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 50,
+    },
+    emptyCartText: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "#333",
+    },
+    emptyCartSubText: {
+        fontSize: 16,
+        color: "#666",
+        marginTop: 10,
+    },
+    shopNowButton: {
+        marginTop: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        backgroundColor: "#007BFF",
+        borderRadius: 8,
+    },
+    shopNowButtonText: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#FFF",
+        textAlign: "center",
     },
 });
