@@ -109,19 +109,19 @@ const NewHomeScreen = ({ navigation }) => {
         ));
     };
 
-    const renderCartItems = () => {
-        return cart.map((item) => (
-            <View key={item.id} style={styles.cartItem}>
-                <Image style={styles.cartItemImage} source={{ uri: item.imageUrl }} resizeMode="cover" />
-                <Text style={styles.cartItemName}>{item.name}</Text>
-                <View style={styles.quantityControl}>
-                    <Pressable onPress={() => dispatch(decrementQuantity(item))}><Text style={styles.quantityText}>-</Text></Pressable>
-                    <Text style={styles.quantityText}>{item.quantity}</Text>
-                    <Pressable onPress={() => dispatch(incrementQuantity(item))}><Text style={styles.quantityText}>+</Text></Pressable>
-                </View>
-            </View>
-        ));
-    };
+    // const renderCartItems = () => {
+    //     return cart.map((item) => (
+    //         <View key={item.id} style={styles.cartItem}>
+    //             <Image style={styles.cartItemImage} source={{ uri: item.imageUrl }} resizeMode="cover" />
+    //             <Text style={styles.cartItemName}>{item.name}</Text>
+    //             <View style={styles.quantityControl}>
+    //                 <Pressable onPress={() => dispatch(decrementQuantity(item))}><Text style={styles.quantityText}>-</Text></Pressable>
+    //                 <Text style={styles.quantityText}>{item.quantity}</Text>
+    //                 <Pressable onPress={() => dispatch(incrementQuantity(item))}><Text style={styles.quantityText}>+</Text></Pressable>
+    //             </View>
+    //         </View>
+    //     ));
+    // };
 
 
     return (
@@ -129,8 +129,8 @@ const NewHomeScreen = ({ navigation }) => {
             <Text style={styles.header}>My Candy Store</Text>
             <Text style={styles.subHeader}>Choose Your Favorite Candy!</Text>
             {renderCandyItems()}
-            <Text style={styles.cartHeading}>Cart Items</Text>
-            {renderCartItems()}
+            {/* <Text style={styles.cartHeading}>Cart Items</Text>
+            {renderCartItems()} */}
         </ScrollView>
     );
 };
