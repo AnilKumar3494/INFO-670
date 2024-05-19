@@ -34,8 +34,8 @@
 
 - **Edit Profile**: Users can easily update their information by navigating to the Edit Profile page - this uses local data saving.
 
-  <img src="Edit Profile Screen.jpg" alt="Edit Profile Screen" width="400" />
+  <img src="Edit Profile Scree.jpg" alt="Edit Profile Screen" width="400" />
 
   <img src="New profile saving.jpg" alt="New Profile Saving" width="400" />
 
-  <img src="Updated New Profile.jpg" alt="Updated New Profile" width="400" />
+  <img src="Updated New Profike.jpg" alt="Updated New Profile" width="400" />
