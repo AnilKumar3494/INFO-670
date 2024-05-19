@@ -21,7 +21,9 @@
   - **Cart**
   - **Edit Profile**
 - **Improved Cart**: The Cart has been moved to a dedicated screen. It now organizes all ordered candy items and displays the total. Additionally, it prompts users to continue shopping if the cart is empty.
+
   <img src="Cart Screen.jpg" alt="Cart Screen" width="400" />
+
   <img src="Cart with Items.jpg" alt="Cart with Items" width="400" />
 
 ### Profile Page
