@@ -1,6 +1,6 @@
 # Candy Store App
 
-## Updates in the Latest Version
+## Updates in the Latest Version | May 18 2024
 
 ### Buy Candy Page
 
