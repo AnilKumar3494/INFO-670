@@ -24,7 +24,7 @@
 
   <img src="Cart Screen.jpg" alt="Cart Screen" width="400" />
 
-  <img src="Cart with Items.jpg" alt="Cart with Items" width="400" />
+  <img src="Cart with Items .jpg" alt="Cart with Items" width="400" />
 
 ### Profile Page
 
