@@ -5,6 +5,7 @@
 ### Buy Candy Page
 
 - **Enhanced Display**: The Buy Candy page now showcases prices more prominently and features improved alignment and styling for a better user experience.
+
   <img src="New Home Page.jpg" alt="Buy Candy Page" width="400" />
 
 ### Chocolate Viewing Screen
