@@ -5,7 +5,7 @@
 ### Buy Candy Page
 
 - **Enhanced Display**: The Buy Candy page now showcases prices more prominently and features improved alignment and styling for a better user experience.
-  ![alt text](<Updated New Profike.jpg>)
+  ![alt text](<New Home Page.jpg>)
 
 ### Chocolate Viewing Screen
 
